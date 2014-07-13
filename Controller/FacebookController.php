@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Controller;
+namespace YassineGuedidi\FacebookBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,8 +33,8 @@ class FacebookController extends ContainerAware
     public function channelAction()
     {
         // Retrieve parameters from the container.
-        $culture = $this->container->getParameter('fos_facebook.culture');
-        $cacheExpire = $this->container->getParameter('fos_facebook.channel.expire');
+        $culture = $this->container->getParameter('yg_facebook.culture');
+        $cacheExpire = $this->container->getParameter('yg_facebook.channel.expire');
 
         // Compute expiration date.
         $date = new \DateTime();

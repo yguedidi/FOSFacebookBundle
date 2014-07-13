@@ -1,8 +1,8 @@
-Getting started with FOSFacebookBundle
+Getting started with YGFacebookBundle
 ====================================
 
 
-To use FOSFacebookBundle, it's important to understand the Facebook login process, which requires the following steps:
+To use YGFacebookBundle, it's important to understand the Facebook login process, which requires the following steps:
 
 1. the user must be logged into Facebook
 2. the user must connect his Facebook account to your app
@@ -13,13 +13,13 @@ Before continuing, you should go in your application settings on Facebook Develo
 To handle authentication, you have two options:
 
 * Use the JavaScript SDK to authenticate the user on the client side;
-* Let FOSFacebookBundle redirect to the Facebook login page
+* Let YGFacebookBundle redirect to the Facebook login page
 
 Note that the later happens automatically if the first provider in your first
-firewall configuration is configured to FOSFacebookBundle and the user access
+firewall configuration is configured to YGFacebookBundle and the user access
 a page that requires authentication without being authenticated.
 
-Before you go ahead and use FOSFacebookBundle you should considerer take a look at Facebook and Symfony SecurityBundle documentation:
+Before you go ahead and use YGFacebookBundle you should considerer take a look at Facebook and Symfony SecurityBundle documentation:
 
 * [Facebook documentation](https://developers.facebook.com/docs/guides/web/)
 * [SecurityBundle documentation](http://symfony.com/doc/current/book/security.html)

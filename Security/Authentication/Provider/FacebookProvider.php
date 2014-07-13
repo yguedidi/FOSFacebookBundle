@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Security\Authentication\Provider;
+namespace YassineGuedidi\FacebookBundle\Security\Authentication\Provider;
 
-use FOS\FacebookBundle\Security\User\UserManagerInterface;
+use YassineGuedidi\FacebookBundle\Security\User\UserManagerInterface;
 
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 
-use FOS\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
 
 class FacebookProvider implements AuthenticationProviderInterface
 {

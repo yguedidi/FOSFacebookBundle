@@ -1,2 +1,2 @@
-fos_facebook_bundle:
-    resource: "@FOSFacebookBundle/Resources/config/routing.xml"
+yg_facebook_bundle:
+    resource: "@YGFacebookBundle/Resources/config/routing.xml"

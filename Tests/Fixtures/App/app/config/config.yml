@@ -1,5 +1,5 @@
 framework:
-    secret: FOSFacebookBundle
+    secret: YGFacebookBundle
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     form: false
@@ -11,7 +11,7 @@ framework:
     session:
         storage_id: session.storage.filesystem
 
-fos_facebook:
+yg_facebook:
     alias:  facebook
     app_id: 123456879
     secret: s3cr3t

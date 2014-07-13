@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\DependencyInjection;
+namespace YassineGuedidi\FacebookBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder,
     Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fos_facebook');
+        $rootNode = $treeBuilder->root('yg_facebook');
 
         $rootNode
             ->fixXmlConfig('permission', 'permissions')
@@ -47,9 +47,9 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('class')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('api')->defaultValue('FOS\FacebookBundle\Facebook\FacebookSessionPersistence')->end()
-                        ->scalarNode('helper')->defaultValue('FOS\FacebookBundle\Templating\Helper\FacebookHelper')->end()
-                        ->scalarNode('twig')->defaultValue('FOS\FacebookBundle\Twig\Extension\FacebookExtension')->end()
+                        ->scalarNode('api')->defaultValue('YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence')->end()
+                        ->scalarNode('helper')->defaultValue('YassineGuedidi\FacebookBundle\Templating\Helper\FacebookHelper')->end()
+                        ->scalarNode('twig')->defaultValue('YassineGuedidi\FacebookBundle\Twig\Extension\FacebookExtension')->end()
                     ->end()
                 ->end()
                 ->arrayNode('channel')

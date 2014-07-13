@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\DependencyInjection;
+namespace YassineGuedidi\FacebookBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class FOSFacebookExtension extends Extension
+class YGFacebookExtension extends Extension
 {
     protected $resources = array(
         'facebook' => 'facebook.xml',
@@ -33,21 +33,21 @@ class FOSFacebookExtension extends Extension
         $this->loadDefaults($container);
 
         if (isset($config['alias'])) {
-            $container->setAlias($config['alias'], 'fos_facebook.api');
+            $container->setAlias($config['alias'], 'yg_facebook.api');
         }
 
         foreach (array('api', 'helper', 'twig') as $attribute) {
-            $container->setParameter('fos_facebook.'.$attribute.'.class', $config['class'][$attribute]);
+            $container->setParameter('yg_facebook.'.$attribute.'.class', $config['class'][$attribute]);
         }
 
         foreach (array('app_id', 'secret', 'cookie', 'domain', 'logging', 'culture', 'permissions') as $attribute) {
-            $container->setParameter('fos_facebook.'.$attribute, $config[$attribute]);
+            $container->setParameter('yg_facebook.'.$attribute, $config[$attribute]);
         }
 
-        $container->setParameter('fos_facebook.channel.expire', $config['channel']['expire']);
+        $container->setParameter('yg_facebook.channel.expire', $config['channel']['expire']);
 
-        if (isset($config['file']) && $container->hasDefinition('fos_facebook.api')) {
-            $facebookApi = $container->getDefinition('fos_facebook.api');
+        if (isset($config['file']) && $container->hasDefinition('yg_facebook.api')) {
+            $facebookApi = $container->getDefinition('yg_facebook.api');
             $facebookApi->setFile($config['file']);
         }
     }
@@ -65,7 +65,7 @@ class FOSFacebookExtension extends Extension
      */
     public function getNamespace()
     {
-        return 'http://symfony.com/schema/dic/fos_facebook';
+        return 'http://symfony.com/schema/dic/yg_facebook';
     }
 
     /**

@@ -5,21 +5,21 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="fos_facebook.auth" class="FOS\FacebookBundle\Security\Authentication\Provider\FacebookProvider" public="false">
+        <service id="yg_facebook.auth" class="YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider" public="false">
             <argument /> <!-- Provider-shared Key -->
-            <argument type="service" id="fos_facebook.api" />
+            <argument type="service" id="yg_facebook.api" />
         </service>
 
-        <service id="fos_facebook.security.authentication.listener"
-                 class="FOS\FacebookBundle\Security\Firewall\FacebookListener"
+        <service id="yg_facebook.security.authentication.listener"
+                 class="YassineGuedidi\FacebookBundle\Security\Firewall\FacebookListener"
                  parent="security.authentication.listener.abstract"
                  abstract="true">
         </service>
 
-        <service id="fos_facebook.security.authentication.entry_point" class="FOS\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint" public="false" abstract="true">
-            <argument type="service" id="fos_facebook.api" />
+        <service id="yg_facebook.security.authentication.entry_point" class="YassineGuedidi\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint" public="false" abstract="true">
+            <argument type="service" id="yg_facebook.api" />
             <argument type="collection" />
-            <argument>%fos_facebook.permissions%</argument>
+            <argument>%yg_facebook.permissions%</argument>
         </service>
 
     </services>

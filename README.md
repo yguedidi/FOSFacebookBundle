@@ -1,10 +1,4 @@
-DEPRECATED
-==========
-
-See [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) instead
--------------------------------------------------------------------
-
-FOSFacebookBundle
+YGFacebookBundle
 =================
 
 This Bundle provides a Symfony2 authentication provider so that users can login to a
@@ -13,14 +7,14 @@ the Facebook login can also be integrated with other data sources like the
 database based solution provided by FOSUserBundle.
 
 
-[![Build Status](https://secure.travis-ci.org/FriendsOfSymfony/FOSFacebookBundle.png?branch=master)](http://travis-ci.org/FriendsOfSymfony/FOSFacebookBundle)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/FriendsOfSymfony/FOSFacebookBundle/badges/quality-score.png?s=15e53e898985730302ecb079408c7640d3b7291b)](https://scrutinizer-ci.com/g/FriendsOfSymfony/FOSFacebookBundle/)
+[![Build Status](https://secure.travis-ci.org/yguedidi/YGFacebookBundle.png?branch=master)](http://travis-ci.org/yguedidi/YGFacebookBundle)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/yguedidi/YGFacebookBundle/badges/quality-score.png?s=15e53e898985730302ecb079408c7640d3b7291b)](https://scrutinizer-ci.com/g/yguedidi/YGFacebookBundle/)
 
 
 Prerequisites
 -------------
 
-This version (1.3) requires at least Symfony 2.2. If you are using Symfony 2.1, you can use the 1.1 version.
+This version (1.x) requires at least Symfony 2.2.
 
 
 Documentation

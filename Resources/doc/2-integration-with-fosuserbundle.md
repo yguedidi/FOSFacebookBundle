@@ -7,9 +7,9 @@ If you still want to use the FOSUserBundle form login, add the "chain_provider" 
 providers:
     chain_provider:
         chain:
-            providers: [fos_userbundle, my_fos_facebook_provider]
+            providers: [fos_userbundle, my_yg_facebook_provider]
     fos_user_bundle: ...
-    my_fos_facebook_provider:
+    my_yg_facebook_provider:
         id: my.facebook.user
 ```
 
@@ -18,7 +18,7 @@ You need to have separate ```login_path``` and ```check_path```'s than your ```F
 ```yaml
 firewalls:
     secured_area:
-        fos_facebook:
+        yg_facebook:
             login_path: _security_login
             check_path: _security_check
 ```
@@ -41,7 +41,7 @@ services:
     my.facebook.user:
         class: Acme\MyBundle\Security\User\Provider\FacebookProvider
         arguments:
-            facebook: "@fos_facebook.api"
+            facebook: "@yg_facebook.api"
             userManager: "@fos_user.user_manager"
             validator: "@validator"
 ```
@@ -61,7 +61,7 @@ use \FacebookApiException;
 class FacebookProvider implements UserProviderInterface
 {
     /**
-     * @var \FOS\FacebookBundle\Facebook\FacebookSessionPersistence
+     * @var \YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence
      */
     protected $facebook;
 

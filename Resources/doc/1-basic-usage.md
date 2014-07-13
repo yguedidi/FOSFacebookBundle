@@ -26,7 +26,7 @@ Basic usage
   {
         return array(
             // ...
-            new FOS\FacebookBundle\FOSFacebookBundle(),
+            new YassineGuedidi\FacebookBundle\YGFacebookBundle(),
             // ...
         );
   }
@@ -40,21 +40,21 @@ Basic usage
       pattern:  /login_check
   _security_logout:
       pattern:  /logout
-  fos_facebook_channel:
-      resource: "@FOSFacebookBundle/Resources/config/routing.xml"
+  yg_facebook_channel:
+      resource: "@YGFacebookBundle/Resources/config/routing.xml"
   ```
 
   ```xml
   #application/config/routing.xml
   <route id="_security_check" pattern="/login_check" />
   <route id="_security_logout" pattern="/logout" />
-  <import resource="@FOSFacebookBundle/Resources/config/routing.xml"/>
+  <import resource="@YGFacebookBundle/Resources/config/routing.xml"/>
   ```
 
 5. Configure the `facebook` service in your config:
   ```yaml
   # application/config/config.yml
-  fos_facebook:
+  yg_facebook:
       alias:  facebook
       app_id: 123456879
       secret: s3cr3t
@@ -64,7 +64,7 @@ Basic usage
 
   ```xml
   # application/config/config.xml
-  <fos_facebook:api
+  <yg_facebook:api
       alias="facebook"
       app_id="123456879"
       secret="s3cr3t"
@@ -73,7 +73,7 @@ Basic usage
       <permission>email</permission>
       <permission>user_birthday</permission>
       <permission>user_location</permission>
-  </fos_facebook:api>
+  </yg_facebook:api>
   ```
 
 
@@ -86,13 +86,13 @@ Basic usage
                   public:
                       # since anonymous is allowed users will not be forced to login
                       pattern:   ^/.*
-                      fos_facebook:
+                      yg_facebook:
                           app_url: "http://apps.facebook.com/appName/"
                           server_url: "http://localhost/facebookApp/"
                       anonymous: true
 
               access_control:
-                  - { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY] } # This is the route secured with fos_facebook
+                  - { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY] } # This is the route secured with yg_facebook
                   - { path: ^/.*, role: [IS_AUTHENTICATED_ANONYMOUSLY] }
   ```
 
@@ -110,26 +110,26 @@ Basic usage
     security:
         providers:
             # choose the provider name freely
-            my_fos_facebook_provider:
+            my_yg_facebook_provider:
                 id: my.facebook.user   # see "Example Custom User Provider using the FOS\UserBundle" chapter further down
 
         firewalls:
             public:
                 pattern: ^/.*
-                fos_facebook:
+                yg_facebook:
                     app_url: "http://apps.facebook.com/appName/"
                     server_url: "http://localhost/facebookApp/"
                     login_path: /login
                     check_path: /login_check
                     default_target_path: /
-                    provider: my_fos_facebook_provider
+                    provider: my_yg_facebook_provider
                 anonymous: true
 
     # application/config/config_dev.yml
     security:
         firewalls:
             public:
-                fos_facebook:
+                yg_facebook:
                     app_url: "http://apps.facebook.com/appName/"
                     server_url: "http://localhost/facebookApp/app_dev.php/"     
   ```

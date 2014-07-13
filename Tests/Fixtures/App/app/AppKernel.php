@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the YGFacebookBundle package.
+ *
+ * (c) Yassine Guedidi <yassine@guedidi.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -11,7 +20,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
+            new YassineGuedidi\FacebookBundle\YGFacebookBundle(),
         );
     }
 
@@ -25,7 +34,7 @@ class AppKernel extends Kernel
      */
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/FOSFacebookBundle/cache';
+        return sys_get_temp_dir().'/YGFacebookBundle/cache';
     }
 
     /**
@@ -33,6 +42,6 @@ class AppKernel extends Kernel
      */
     public function getLogDir()
     {
-        return sys_get_temp_dir().'/FOSFacebookBundle/logs';
+        return sys_get_temp_dir().'/YGFacebookBundle/logs';
     }
 }

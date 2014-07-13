@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Tests\Security\Authentication\Token;
+namespace YassineGuedidi\FacebookBundle\Tests\Security\Authentication\Token;
 
-use FOS\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
 
 class FacebookUserTokenTest extends \PHPUnit_Framework_TestCase
 {

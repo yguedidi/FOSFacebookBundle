@@ -1,6 +1,15 @@
 <?php
 
-namespace FOS\FacebookBundle\Facebook;
+/*
+ * This file is part of the YGFacebookBundle package.
+ *
+ * (c) Yassine Guedidi <yassine@guedidi.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace YassineGuedidi\FacebookBundle\Facebook;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FacebookSessionPersistence extends \BaseFacebook
 {
-    const PREFIX = '_fos_facebook_';
+    const PREFIX = '_yg_facebook_';
 
     protected $session;
     protected $prefix;

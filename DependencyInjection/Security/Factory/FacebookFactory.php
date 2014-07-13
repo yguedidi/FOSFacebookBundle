@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\DependencyInjection\Security\Factory;
+namespace YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -34,20 +34,20 @@ class FacebookFactory extends AbstractFactory
 
     public function getKey()
     {
-        return 'fos_facebook';
+        return 'yg_facebook';
     }
 
     protected function getListenerId()
     {
-        return 'fos_facebook.security.authentication.listener';
+        return 'yg_facebook.security.authentication.listener';
     }
 
     protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId)
     {
-        $authProviderId = 'fos_facebook.auth.'.$id;
+        $authProviderId = 'yg_facebook.auth.'.$id;
 
         $definition = $container
-            ->setDefinition($authProviderId, new DefinitionDecorator('fos_facebook.auth'))
+            ->setDefinition($authProviderId, new DefinitionDecorator('yg_facebook.auth'))
             ->replaceArgument(0, $id);
 
         // with user provider
@@ -64,14 +64,14 @@ class FacebookFactory extends AbstractFactory
 
     protected function createEntryPoint($container, $id, $config, $defaultEntryPointId)
     {
-        $entryPointId = 'fos_facebook.security.authentication.entry_point.'.$id;
+        $entryPointId = 'yg_facebook.security.authentication.entry_point.'.$id;
         $container
-            ->setDefinition($entryPointId, new DefinitionDecorator('fos_facebook.security.authentication.entry_point'))
+            ->setDefinition($entryPointId, new DefinitionDecorator('yg_facebook.security.authentication.entry_point'))
             ->replaceArgument(1, $config)
         ;
 
         // set options to container for use by other classes
-        $container->setParameter('fos_facebook.options.'.$id, $config);
+        $container->setParameter('yg_facebook.options.'.$id, $config);
 
         return $entryPointId;
     }

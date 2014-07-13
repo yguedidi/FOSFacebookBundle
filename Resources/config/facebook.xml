@@ -6,27 +6,27 @@
 
     <services>
 
-        <service id="fos_facebook.api" class="%fos_facebook.api.class%">
+        <service id="yg_facebook.api" class="%yg_facebook.api.class%">
             <argument type="collection">
-                <argument key="appId">%fos_facebook.app_id%</argument>
-                <argument key="secret">%fos_facebook.secret%</argument>
-                <argument key="cookie">%fos_facebook.cookie%</argument>
-                <argument key="domain">%fos_facebook.domain%</argument>
+                <argument key="appId">%yg_facebook.app_id%</argument>
+                <argument key="secret">%yg_facebook.secret%</argument>
+                <argument key="cookie">%yg_facebook.cookie%</argument>
+                <argument key="domain">%yg_facebook.domain%</argument>
             </argument>
             <argument type="service" id="session" />
         </service>
 
-        <service id="fos_facebook.helper" class="%fos_facebook.helper.class%">
+        <service id="yg_facebook.helper" class="%yg_facebook.helper.class%">
             <argument type="service" id="templating" />
-            <argument type="service" id="fos_facebook.api" />
+            <argument type="service" id="yg_facebook.api" />
             <argument type="service" id="router" />
-            <argument>%fos_facebook.logging%</argument>
-            <argument>%fos_facebook.culture%</argument>
-            <argument>%fos_facebook.permissions%</argument>
+            <argument>%yg_facebook.logging%</argument>
+            <argument>%yg_facebook.culture%</argument>
+            <argument>%yg_facebook.permissions%</argument>
             <tag name="templating.helper" alias="facebook" />
         </service>
 
-        <service id="fos_facebook.twig" class="%fos_facebook.twig.class%">
+        <service id="yg_facebook.twig" class="%yg_facebook.twig.class%">
             <argument type="service" id="service_container" />
             <tag name="twig.extension" />
         </service>

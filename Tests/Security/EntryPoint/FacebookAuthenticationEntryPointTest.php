@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Tests\Security\EntryPoint;
+namespace YassineGuedidi\FacebookBundle\Tests\Security\EntryPoint;
 
-use FOS\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint;
+use YassineGuedidi\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint;
 
 class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers FOS\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
+     * @covers YassineGuedidi\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
      */
     public function testThatRedirectResponseWithFacebookLoginUrlIsCreated()
     {
@@ -27,7 +27,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('http://localhost/index'));
 
         $options = array('check_path' => '/index', 'redirect_to_facebook_login' => true);
-        $facebookMock = $this->getMockBuilder('FOS\FacebookBundle\Facebook\FacebookSessionPersistence')
+        $facebookMock = $this->getMockBuilder('YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence')
             ->disableOriginalConstructor()
             ->setMethods(array('getLoginUrl'))
             ->getMock();
@@ -48,7 +48,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers FOS\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
+     * @covers YassineGuedidi\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
      */
     public function testThatRedirectResponseWithoutFacebookLoginUrlIsCreated()
     {
@@ -61,7 +61,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
             'login_path'                    => '/login',
             'redirect_to_facebook_login'    => false
         );
-        $facebookMock = $this->getMockBuilder('FOS\FacebookBundle\Facebook\FacebookSessionPersistence')
+        $facebookMock = $this->getMockBuilder('YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence')
             ->disableOriginalConstructor()
             ->setMethods(array('getLoginUrl'))
             ->getMock();
@@ -76,7 +76,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers FOS\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
+     * @covers YassineGuedidi\FacebookBundle\Security\EntryPoint\FacebookAuthenticationEntryPoint::start
      */
     public function testThatRedirectionToFacebookLoginUrlIsCreated()
     {
@@ -88,7 +88,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
             'app_url'                       => 'http://app.url',
             'redirect_to_facebook_login'    => true
         );
-        $facebookMock = $this->getMockBuilder('FOS\FacebookBundle\Facebook\FacebookSessionPersistence')
+        $facebookMock = $this->getMockBuilder('YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence')
             ->disableOriginalConstructor()
             ->setMethods(array('getLoginUrl'))
             ->getMock();

@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Templating\Helper;
+namespace YassineGuedidi\FacebookBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -56,7 +56,7 @@ class FacebookHelper extends Helper
      */
     public function initialize($parameters = array(), $name = null)
     {
-        $name = $name ?: 'FOSFacebookBundle::initialize.html.php';
+        $name = $name ?: 'YGFacebookBundle::initialize.html.php';
 
         return $this->templating->render($name, $parameters + array(
             'async'       => true,
@@ -67,14 +67,14 @@ class FacebookHelper extends Helper
             'status'      => false,
             'cookie'      => true,
             'logging'     => $this->logging,
-            'channelUrl'  => $this->urlGenerator->generate('fos_facebook_channel', array(), true),
+            'channelUrl'  => $this->urlGenerator->generate('yg_facebook_channel', array(), true),
             'culture'     => $this->culture,
         ));
     }
 
     public function loginButton($parameters = array(), $name = null)
     {
-        $name = $name ?: 'FOSFacebookBundle::loginButton.html.php';
+        $name = $name ?: 'YGFacebookBundle::loginButton.html.php';
 
         return $this->templating->render($name, $parameters + array(
             'autologoutlink'  => 'false',

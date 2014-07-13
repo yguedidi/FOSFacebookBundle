@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the FOSFacebookBundle package.
+ * This file is part of the YGFacebookBundle package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Yassine Guedidi <yassine@guedidi.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace FOS\FacebookBundle\Tests\DependencyInjection\Security\Factory;
+namespace YassineGuedidi\FacebookBundle\Tests\DependencyInjection\Security\Factory;
 
-use FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory;
+use YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory;
 
 class FacebookFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory
+     * @var YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory
      */
     private $factory = null;
 
@@ -32,55 +32,55 @@ class FacebookFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testThatCanGetKey()
     {
-        $this->assertEquals('fos_facebook', $this->factory->getKey());
+        $this->assertEquals('yg_facebook', $this->factory->getKey());
     }
 
     /**
-     * @covers FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
+     * @covers YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
      */
     public function testThatCreateUserAuthProviderWhenDefinedInConfig()
     {
         $idsArray = $this->facebookFactoryCreate(array('provider' => true, 'remember_me' => false, 'create_user_if_not_exists' => false));
-        $this->assertEquals('fos_facebook.auth.l3l0', $idsArray[0]);
+        $this->assertEquals('yg_facebook.auth.l3l0', $idsArray[0]);
     }
 
     /**
-     * @covers FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
+     * @covers YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
      */
     public function testThatCreateUserAuthProviderEvenWhenNotDefinedInConfig()
     {
         $idsArray = $this->facebookFactoryCreate(array('remember_me' => false));
-        $this->assertEquals('fos_facebook.auth.l3l0', $idsArray[0]);
+        $this->assertEquals('yg_facebook.auth.l3l0', $idsArray[0]);
     }
 
     /**
-     * @covers FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
+     * @covers YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createAuthProvider
      */
     public function testThatCreateDifferentUserAuthProviderForDifferentFirewalls()
     {
         $idsArray = $this->facebookFactoryCreate(array('remember_me' => false));
-        $this->assertEquals('fos_facebook.auth.l3l0', $idsArray[0]);
+        $this->assertEquals('yg_facebook.auth.l3l0', $idsArray[0]);
 
         $idsArray = $this->facebookFactoryCreate(array('remember_me' => false), 'main');
-        $this->assertEquals('fos_facebook.auth.main', $idsArray[0]);
+        $this->assertEquals('yg_facebook.auth.main', $idsArray[0]);
     }
 
     /**
-     * @covers FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createEntryPoint
+     * @covers YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::createEntryPoint
      */
     public function testThatCreateEntryPoint()
     {
         $idsArray = $this->facebookFactoryCreate(array('remember_me' => false));
-        $this->assertEquals('fos_facebook.security.authentication.entry_point.l3l0', $idsArray[2]);
+        $this->assertEquals('yg_facebook.security.authentication.entry_point.l3l0', $idsArray[2]);
     }
 
     /**
-     * @covers FOS\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::getListenerId
+     * @covers YassineGuedidi\FacebookBundle\DependencyInjection\Security\Factory\FacebookFactory::getListenerId
      */
     public function testThatListenerForListenerId()
     {
         $idsArray = $this->facebookFactoryCreate(array('remember_me' => false));
-        $this->assertEquals('fos_facebook.security.authentication.listener.l3l0', $idsArray[1]);
+        $this->assertEquals('yg_facebook.security.authentication.listener.l3l0', $idsArray[1]);
     }
 
     /**

@@ -13,7 +13,7 @@ If you want to avoid this behavior and redirect the user to another page, you ca
 firewalls:
 	public:
 		...
-		fos_facebook:
+		yg_facebook:
 			...
 			redirect_to_facebook_login: false
 ```
