@@ -11,7 +11,7 @@
 
 namespace YassineGuedidi\FacebookBundle\Security\Firewall;
 
-use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken;
 use Symfony\Component\Security\Http\Firewall\AbstractAuthenticationListener;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,6 +24,6 @@ class FacebookListener extends AbstractAuthenticationListener
     {
         $accessToken = $request->get('access_token');
 
-        return $this->authenticationManager->authenticate(new FacebookUserToken($this->providerKey, '', array(), $accessToken));
+        return $this->authenticationManager->authenticate(new FacebookToken($this->providerKey, '', array(), $accessToken));
     }
 }

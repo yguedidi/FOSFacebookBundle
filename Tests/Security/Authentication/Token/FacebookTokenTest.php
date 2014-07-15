@@ -11,16 +11,16 @@
 
 namespace YassineGuedidi\FacebookBundle\Tests\Security\Authentication\Token;
 
-use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken;
 
-class FacebookUserTokenTest extends \PHPUnit_Framework_TestCase
+class FacebookTokenTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provider
      */
     public function testThatAlwaysReturnEmptyCredentials($uid, $roles)
     {
-        $token = new FacebookUserToken('main', $uid, $roles);
+        $token = new FacebookToken('main', $uid, $roles);
 
         $this->assertEquals('', $token->getCredentials());
     }
@@ -41,7 +41,7 @@ class FacebookUserTokenTest extends \PHPUnit_Framework_TestCase
     public function testThatProviderKeyIsNotEmptyAfterDeserialization()
     {
         $providerKey = 'main';
-        $token = unserialize(serialize(new FacebookUserToken($providerKey)));
+        $token = unserialize(serialize(new FacebookToken($providerKey)));
 
         $this->assertEquals($providerKey, $token->getProviderKey());
     }

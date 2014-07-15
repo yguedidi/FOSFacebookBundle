@@ -11,7 +11,7 @@
 
 namespace YassineGuedidi\FacebookBundle\Tests\Security\Authentication\Provider;
 
-use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken;
 
 use YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -32,7 +32,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider::authenticate
      */
-    public function testThatCannotAuthenticateWhenTokenIsNotFacebookUserToken()
+    public function testThatCannotAuthenticateWhenTokenIsNotFacebookToken()
     {
         $facebookMock = $this->getMockBuilder('YassineGuedidi\FacebookBundle\Facebook\FacebookSessionPersistence')
             ->disableOriginalConstructor()
@@ -55,7 +55,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $facebookProvider = new FacebookProvider($providerKeyForProvider, $facebookMock);
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getProviderKey'), array($providerKeyForToken));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getProviderKey'), array($providerKeyForToken));
         $tokenMock->expects($this->any())
             ->method('getProviderKey')
             ->will($this->returnValue($providerKeyForToken));
@@ -83,7 +83,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
 
         $facebookProvider = new FacebookProvider($providerKey, $facebookMock);
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getAttributes', 'getProviderKey'), array($providerKey));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getAttributes', 'getProviderKey'), array($providerKey));
         $tokenMock->expects($this->once())
             ->method('getAttributes')
             ->will($this->returnValue(array()));
@@ -117,7 +117,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
             ->will($this->throwException(new AuthenticationException('test')));
 
         $userCheckerMock = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getProviderKey'), array($providerKey));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getProviderKey'), array($providerKey));
         $tokenMock->expects($this->any())
             ->method('getProviderKey')
             ->will($this->returnValue($providerKey));
@@ -148,7 +148,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('234'));
 
         $userCheckerMock = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getProviderKey'), array($providerKey));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getProviderKey'), array($providerKey));
         $tokenMock->expects($this->any())
             ->method('getProviderKey')
             ->will($this->returnValue($providerKey));
@@ -175,7 +175,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
         $userProviderMock = $this->getMock('Symfony\Component\Security\Core\User\UserProviderInterface');
         $userCheckerMock = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getProviderKey'), array($providerKey));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getProviderKey'), array($providerKey));
         $tokenMock->expects($this->any())
             ->method('getProviderKey')
             ->will($this->returnValue($providerKey));
@@ -218,7 +218,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
         $userCheckerMock->expects($this->once())
             ->method('checkPostAuth');
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getAttributes', 'getProviderKey'), array($providerKey));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getAttributes', 'getProviderKey'), array($providerKey));
         $tokenMock->expects($this->once())
             ->method('getAttributes')
             ->will($this->returnValue(array()));
@@ -233,7 +233,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Symfony\Component\Security\Core\Exception\AuthenticationException
      */
-    public function testThatAccessTokenIsSetToFacebookSessionPersistenceWithAccessTokenFromFacebookUserToken()
+    public function testThatAccessTokenIsSetToFacebookSessionPersistenceWithAccessTokenFromFacebookToken()
     {
         $providerKey = 'main';
         $accessToken = 'AbCd';
@@ -252,7 +252,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
 
         $userCheckerMock = $this->getMock('Symfony\Component\Security\Core\User\UserCheckerInterface');
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getProviderKey','getAccessToken'), array($providerKey,'',array(),$accessToken));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getProviderKey','getAccessToken'), array($providerKey,'',array(),$accessToken));
         $tokenMock->expects($this->any())
             ->method('getProviderKey')
             ->will($this->returnValue($providerKey));
@@ -268,7 +268,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
      * @covers YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider::authenticate
      * @covers YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider::createAuthenticatedToken
      */
-    public function testThatAccessTokenIsSetToNewFacebookUserTokenWhenAuthenticateWithUserProvider()
+    public function testThatAccessTokenIsSetToNewFacebookTokenWhenAuthenticateWithUserProvider()
     {
         $providerKey = 'main';
         $accessToken = 'AbCd';
@@ -297,7 +297,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
         $userCheckerMock->expects($this->once())
             ->method('checkPostAuth');
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getAttributes', 'getProviderKey'), array($providerKey,'',array(),$accessToken));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getAttributes', 'getProviderKey'), array($providerKey,'',array(),$accessToken));
         $tokenMock->expects($this->once())
             ->method('getAttributes')
             ->will($this->returnValue(array()));
@@ -313,7 +313,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
      * @covers YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider::authenticate
      * @covers YassineGuedidi\FacebookBundle\Security\Authentication\Provider\FacebookProvider::createAuthenticatedToken
      */
-    public function testThatAccessTokenIsSetToNewFacebookUserTokenWhenAuthenticateWithoutUserProvider()
+    public function testThatAccessTokenIsSetToNewFacebookTokenWhenAuthenticateWithoutUserProvider()
     {
         $providerKey = 'main';
         $accessToken = 'AbCd';
@@ -328,7 +328,7 @@ class FacebookProviderTest extends \PHPUnit_Framework_TestCase
 
         $facebookProvider = new FacebookProvider($providerKey, $facebookMock);
 
-        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken', array('getAttributes', 'getProviderKey'), array($providerKey,'',array(),$accessToken));
+        $tokenMock = $this->getMock('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken', array('getAttributes', 'getProviderKey'), array($providerKey,'',array(),$accessToken));
         $tokenMock->expects($this->once())
             ->method('getAttributes')
             ->will($this->returnValue(array()));

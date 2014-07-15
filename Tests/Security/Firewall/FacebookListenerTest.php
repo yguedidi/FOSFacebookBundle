@@ -40,7 +40,7 @@ class FacebookListenerTest extends \PHPUnit_Framework_TestCase
         $authenticationManagerMock = $this->getMock('Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface');
         $authenticationManagerMock->expects($this->once())
             ->method('authenticate')
-            ->with($this->isInstanceOf('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken'));
+            ->with($this->isInstanceOf('YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken'));
 
         return $authenticationManagerMock;
     }

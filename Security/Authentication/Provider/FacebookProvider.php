@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 
-use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookUserToken;
+use YassineGuedidi\FacebookBundle\Security\Authentication\Token\FacebookToken;
 
 class FacebookProvider implements AuthenticationProviderInterface
 {
@@ -62,7 +62,7 @@ class FacebookProvider implements AuthenticationProviderInterface
         if ($user instanceof UserInterface) {
             $this->userChecker->checkPostAuth($user);
 
-            $newToken = new FacebookUserToken($this->providerKey, $user, $user->getRoles(), $token->getAccessToken());
+            $newToken = new FacebookToken($this->providerKey, $user, $user->getRoles(), $token->getAccessToken());
             $newToken->setAttributes($token->getAttributes());
 
             return $newToken;
@@ -84,13 +84,13 @@ class FacebookProvider implements AuthenticationProviderInterface
 
     public function supports(TokenInterface $token)
     {
-        return $token instanceof FacebookUserToken && $this->providerKey === $token->getProviderKey();
+        return $token instanceof FacebookToken && $this->providerKey === $token->getProviderKey();
     }
 
     protected function createAuthenticatedToken($uid, $accessToken = null)
     {
         if (null === $this->userProvider) {
-            return new FacebookUserToken($this->providerKey, $uid, array(), $accessToken);
+            return new FacebookToken($this->providerKey, $uid, array(), $accessToken);
         }
 
         try {
@@ -110,7 +110,7 @@ class FacebookProvider implements AuthenticationProviderInterface
             throw new AuthenticationException('User provider did not return an implementation of user interface.');
         }
 
-        return new FacebookUserToken($this->providerKey, $user, $user->getRoles(), $accessToken);
+        return new FacebookToken($this->providerKey, $user, $user->getRoles(), $accessToken);
     }
 
 }
