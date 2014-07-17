@@ -20,6 +20,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FacebookListener extends AbstractAuthenticationListener
 {
+    protected function requiresAuthentication(Request $request)
+    {
+        return $request->query->has('state') && $request->query->has('code');
+    }
+
     protected function attemptAuthentication(Request $request)
     {
         $accessToken = $request->get('access_token');

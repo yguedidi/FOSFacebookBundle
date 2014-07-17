@@ -18,18 +18,39 @@ class FacebookListenerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers YassineGuedidi\FacebookBundle\Security\Firewall\FacebookListener::attemptAuthentication
      */
+    public function testThatCantAttemptAuthenticationWithoutFacebookQueryParameter()
+    {
+        $authenticationManagerMock = $this->getMock('Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface');
+        $authenticationManagerMock->expects($this->never())
+            ->method('authenticate');
+
+        $listener = new FacebookListener(
+            $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface'),
+            $authenticationManagerMock,
+            $this->getMock('Symfony\Component\Security\Http\Session\SessionAuthenticationStrategyInterface'),
+            $this->getMock('Symfony\Component\Security\Http\HttpUtils'),
+            'providerKey',
+            $this->getMock('Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface'),
+            $this->getMock('Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface')
+        );
+        $this->assertNull($listener->handle($this->getResponseEvent()));
+    }
+
+    /**
+     * @covers YassineGuedidi\FacebookBundle\Security\Firewall\FacebookListener::attemptAuthentication
+     */
     public function testThatCanAttemptAuthenticationWithFacebook()
     {
         $listener = new FacebookListener(
             $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface'),
             $this->getAuthenticationManager(),
             $this->getMock('Symfony\Component\Security\Http\Session\SessionAuthenticationStrategyInterface'),
-            $this->getHttpUtils(),
+            $this->getMock('Symfony\Component\Security\Http\HttpUtils'),
             'providerKey',
             $this->getMock('Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface'),
             $this->getMock('Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface')
         );
-        $listener->handle($this->getResponseEvent());
+        $listener->handle($this->getResponseEvent(array('state' => 'foo', 'code' => 'bar')));
     }
 
     /**
@@ -46,27 +67,14 @@ class FacebookListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Symfony\Component\Security\Http\HttpUtils
-     */
-    private function getHttpUtils()
-    {
-        $httpUtils = $this->getMock('Symfony\Component\Security\Http\HttpUtils');
-        $httpUtils->expects($this->once())
-            ->method('checkRequestPath')
-            ->will($this->returnValue(true));
-
-        return $httpUtils;
-    }
-
-    /**
      * @return Symfony\Component\HttpKernel\Event\GetResponseEvent
      */
-    private function getResponseEvent()
+    private function getResponseEvent(array $query = array())
     {
         $responseEventMock = $this->getMock('Symfony\Component\HttpKernel\Event\GetResponseEvent', array('getRequest'), array(), '', false);
         $responseEventMock->expects($this->any())
             ->method('getRequest')
-            ->will($this->returnValue($this->getRequest()));
+            ->will($this->returnValue($this->getRequest($query)));
 
         return $responseEventMock;
     }
@@ -74,10 +82,12 @@ class FacebookListenerTest extends \PHPUnit_Framework_TestCase
     /**
      * @return Symfony\Component\HttpFoundation\Request
      */
-    private function getRequest()
+    private function getRequest(array $query = array())
     {
         $requestMock = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')
             ->disableOriginalClone()
+            ->setMethods(array('hasSession', 'hasPreviousSession'))
+            ->setConstructorArgs(array($query))
             ->getMock();
         $requestMock->expects($this->any())
             ->method('hasSession')
@@ -88,4 +98,5 @@ class FacebookListenerTest extends \PHPUnit_Framework_TestCase
 
         return $requestMock;
     }
+
 }

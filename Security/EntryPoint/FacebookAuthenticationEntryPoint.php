@@ -55,7 +55,7 @@ class FacebookAuthenticationEntryPoint implements AuthenticationEntryPointInterf
             return new RedirectResponse($loginPath);
         }
 
-        $redirect_uri = $request->getUriForPath($this->options->get('check_path', ''));
+        $redirect_uri = $this->getCurrentUrl($request);
         if ($this->options->get('server_url') && $this->options->get('app_url')) {
             $redirect_uri = str_replace($this->options->get('server_url'), $this->options->get('app_url'), $redirect_uri);
         }
@@ -72,5 +72,31 @@ class FacebookAuthenticationEntryPoint implements AuthenticationEntryPointInterf
         }
 
         return new RedirectResponse($loginUrl);
+    }
+
+    protected function getCurrentUrl(Request $request)
+    {
+        $queryParamsToDrop = array();
+
+        if ($request->query->has('state') &&
+            $request->query->has('code')) {
+            $queryParamsToDrop = array('state', 'code');
+        } elseif (
+            $request->query->has('state') &&
+            $request->query->has('error') &&
+            $request->query->has('error_reason') &&
+            $request->query->has('error_description') &&
+            $request->query->has('error_code')
+        ) {
+            $queryParamsToDrop = array('state', 'error', 'error_reason', 'error_description', 'error_code');
+        }
+
+        // Filter query params
+        $query = array_diff_key($request->query->all(), array_flip($queryParamsToDrop));
+
+        // Update server QUERY_STRING value, used by getUri()
+        $request->server->set('QUERY_STRING', Request::normalizeQueryString(http_build_query($query, null, '&')));
+
+        return $request->getUri();
     }
 }

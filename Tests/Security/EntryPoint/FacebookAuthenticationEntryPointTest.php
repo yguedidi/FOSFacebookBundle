@@ -20,10 +20,9 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
      */
     public function testThatRedirectResponseWithFacebookLoginUrlIsCreated()
     {
-        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUriForPath'));
+        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUri'));
         $requestMock->expects($this->once())
-            ->method('getUriForPath')
-            ->with($this->equalTo('/index'))
+            ->method('getUri')
             ->will($this->returnValue('http://localhost/index'));
 
         $options = array('check_path' => '/index', 'redirect_to_facebook_login' => true);
@@ -52,9 +51,9 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
      */
     public function testThatRedirectResponseWithoutFacebookLoginUrlIsCreated()
     {
-        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUriForPath'));
+        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUri'));
         $requestMock->expects($this->never())
-            ->method('getUriForPath');
+            ->method('getUri');
 
         $options = array(
             'check_path'                    => '/index',
@@ -80,7 +79,7 @@ class FacebookAuthenticationEntryPointTest extends \PHPUnit_Framework_TestCase
      */
     public function testThatRedirectionToFacebookLoginUrlIsCreated()
     {
-        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUriForPath'));
+        $requestMock = $this->getMock('Symfony\Component\HttpFoundation\Request', array('getUri'));
 
         $options = array(
             'check_path'                    => '/index',
